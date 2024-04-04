@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = inputs: {
+  outputs = {disko, ...}@inputs: {
     nixosConfigurations.vm = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
