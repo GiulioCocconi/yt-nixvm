@@ -32,7 +32,7 @@
         "oauth"
       ];
     };
-  }
+  };
 
   # Fixes https://github.com/NixOS/nixpkgs/issues/195777
   system.activationScripts = with pkgs; {
