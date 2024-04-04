@@ -6,9 +6,11 @@
         device = "/dev/sda";
         type = "disk";
         content = {
-          type = "gpt";
-          partitions = {
-            ESP = {
+          type = "table"
+          format = "gpt";
+          partitions = [
+            {
+              name = "ESP";
               start = "1M";
               end = "512M";
               bootable = true;
@@ -17,8 +19,9 @@
                 format = "vfat";
                 mountpoint = "/boot";
               };
-            };
-            root = {
+            }
+            {
+              name = "root";
               start = "512M";
               end = "100%";
               bootable = true;
@@ -28,8 +31,8 @@
                 format = "ext4";
                 mountpoint = "/";
               };
-            };
-          };
+            }
+          ];
         };
       };
     };
