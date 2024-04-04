@@ -6,7 +6,7 @@
         device = "/dev/sda";
         type = "disk";
         content = {
-          type = "table"
+          type = "table";
           format = "gpt";
           partitions = [
             {
