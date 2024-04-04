@@ -34,11 +34,9 @@
     };
   };
 
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda";
-  };
-
+  boot.loader.systemd-boot.enable = true;
+  boot.supportedFilesystems = [ "ext4" ];
+  
   virtualisation.virtualbox.guest.enable = true;
 
   services.xserver.desktopManager.lxqt.enable = true;
