@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     vim
@@ -7,17 +7,14 @@
     killall
     tree
     ripgrep
-    terminator
     libsForQt5.konsole
     libsForQt5.kate
     firefox
     git-credential-oauth
   ];
 
-  # time.timeZone = "Europe/Rome";
-  # console.keyMap = "it";
-
   networking.networkmanager.enable = true;
+  networking.hostName = "vm";
 
   programs.git = {
     enable = true;
@@ -32,6 +29,31 @@
         "oauth"
       ];
     };
+  };
+
+  fonts.packages = with pkgs; [
+    iosevka
+  ];
+
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+
+    channel.enable = false;
+
+    nixPath = [
+      "nixpkgs=${pkgs.path}"
+    ];
+
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "-d";
+    };
+
+    settings.nix-path = config.nix.nixPath;
   };
 
   boot.loader.systemd-boot.enable = true;
