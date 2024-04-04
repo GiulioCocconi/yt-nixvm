@@ -34,11 +34,6 @@
     };
   };
 
-  # Fixes https://github.com/NixOS/nixpkgs/issues/195777
-  system.activationScripts = with pkgs; {
-    restart-udev = "${systemd}/bin/systemctl restart systemd-udev-trigger.service";
-  };
-
   boot.loader.grub = {
     enable = true;
     device = "/dev/sda";
