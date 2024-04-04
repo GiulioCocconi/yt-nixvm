@@ -7,9 +7,8 @@
         type = "disk";
         content = {
           type = "gpt";
-          partitions = [
-            {
-              name = "ESP";
+          partitions = {
+            ESP = {
               start = "1M";
               end = "512M";
               bootable = true;
@@ -18,9 +17,8 @@
                 format = "vfat";
                 mountpoint = "/boot";
               };
-            }
-            {
-              name = "root";
+            };
+            root = {
               start = "512M";
               end = "100%";
               bootable = true;
@@ -30,8 +28,8 @@
                 format = "ext4";
                 mountpoint = "/";
               };
-            }
-          ];
+            };
+          };
         };
       };
     };
