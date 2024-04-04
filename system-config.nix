@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    git
     vim
     wget
     file
@@ -12,12 +11,28 @@
     libsForQt5.konsole
     libsForQt5.kate
     firefox
+    git-credential-oauth
   ];
 
   # time.timeZone = "Europe/Rome";
   # console.keyMap = "it";
 
   networking.networkmanager.enable = true;
+
+  programs.git = {
+    enable = true;
+    config = {
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+      core.whitespace = "trailing-space,space-before-tab";
+
+      credential-helper = [
+        "cache --timeout 7200"
+        "oauth"
+      ];
+    };
+  }
 
   # Fixes https://github.com/NixOS/nixpkgs/issues/195777
   system.activationScripts = with pkgs; {
