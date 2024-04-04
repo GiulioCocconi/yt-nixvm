@@ -27,7 +27,7 @@
       push.autoSetupRemote = true;
       core.whitespace = "trailing-space,space-before-tab";
 
-      credential-helper = [
+      credential.helper = [
         "cache --timeout 7200"
         "oauth"
       ];
