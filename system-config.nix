@@ -31,6 +31,20 @@
     };
   };
 
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      line_break.disabled = true;
+      status = {
+        disabled = false;
+        style = "red";
+        format = "[\\[CODE $status\\]]($style)";
+      };
+    };
+  };
+
+
   fonts.packages = with pkgs; [
     iosevka
   ];
@@ -73,6 +87,8 @@
       extraGroups = [ "wheel" ];
     };
   };
+
+  environment.shellAliases.update-system = ''sudo nixos-rebuild switch --flake "github:GiulioCocconi/yt-nixvm"'';
 
   system.stateVersion = "23.11";
 }
